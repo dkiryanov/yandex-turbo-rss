@@ -14,9 +14,7 @@ namespace YandexTurboRss.Analytics
 
         public override XElement ToXElement()
         {
-            XNamespace turboYandexNamespace = Namespaces.TurboYandex;
-
-            XElement xelement = new XElement(turboYandexNamespace + "analytics", new XAttribute("type", Type));
+            XElement xelement = new XElement(TurboYandexNamespace + "analytics", new XAttribute("type", Type));
 
             if (!string.IsNullOrEmpty(Params))
             {

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Linq;
 using YandexTurboRss.Constants;
+using YandexTurboRss.Related;
 
-namespace YandexTurboRss
+namespace YandexTurboRss.Feed
 {
     public class TurboFeed
     {
@@ -13,16 +15,17 @@ namespace YandexTurboRss
         private readonly XNamespace _turboYandexNamespace = Namespaces.TurboYandex;
         private readonly XNamespace _mediaNamespace = Namespaces.YahooMedia;
 
-        public TurboFeed(string title, string description, Uri feedAlternateLink, string language = "ru")
+        public TurboFeed(TurboChannel channel)
         {
-            _channel = new XElement("channel",
-                new XElement("title", title),
-                new XElement("link", feedAlternateLink.ToString()),
-                new XElement("description", description),
-                new XElement("language", language));
+            if (channel == null)
+            {
+                throw new ArgumentNullException(nameof(channel), "Channel cannot be null.");
+            }
 
+            _channel = GetChannel(channel);
             _feed = new XDocument(
-                new XElement("rss",
+                new XElement(
+                    "rss",
                     new XAttribute(XNamespace.Xmlns + "yandex", _yandexNewsNamespace.NamespaceName),
                     new XAttribute(XNamespace.Xmlns + "media", _mediaNamespace.NamespaceName),
                     new XAttribute(XNamespace.Xmlns + "turbo", _turboYandexNamespace),
@@ -37,7 +40,9 @@ namespace YandexTurboRss
                 throw new ArgumentNullException(nameof(item), "Feed item cannot be null.");
             }
 
-            XElement element = new XElement("item", new XAttribute("turbo", item.Turbo),
+            XElement element = new XElement(
+                "item", 
+                new XAttribute("turbo", item.Turbo),
                 new XElement("link", item.Link),
                 new XElement(_turboYandexNamespace + "source", item.Source),
                 new XElement(_turboYandexNamespace + "topic", item.Topic),
@@ -64,6 +69,37 @@ namespace YandexTurboRss
         public void SaveToFile(string path)
         {
             _feed.Save(path);
+        }
+
+        private XElement GetChannel(TurboChannel channel)
+        {
+            List<XElement> analyticsElements = new List<XElement>();
+
+            if (channel.Analytics != null && channel.Analytics.Any())
+            {
+                analyticsElements.AddRange(channel.Analytics.Select(analytics => analytics.ToXElement()));
+            }
+
+            List<XElement> adNetworkElements = new List<XElement>();
+
+            if (channel.AdNetworks != null && channel.AdNetworks.Any())
+            {
+                analyticsElements.AddRange(channel.AdNetworks.Select(ads => ads.ToXElement()));
+            }
+
+            XElement related = channel.Related != null
+                ? channel.Related.ToXElement()
+                : new YandexRelated().ToXElement();
+
+            return new XElement(
+                "channel",
+                new XElement("title", channel.Title),
+                new XElement("link", channel.Link.ToString()),
+                new XElement("description", channel.Description),
+                new XElement("language", channel.Language), 
+                analyticsElements,
+                adNetworkElements, 
+                related);
         }
     }
 }

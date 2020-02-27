@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace YandexTurboRss
+namespace YandexTurboRss.Feed
 {
     public class TurboFeedItem
     {

@@ -40,14 +40,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdNetwork\AdFox.cs" />
+    <Compile Include="AdNetwork\TurboAdNetwork.cs" />
+    <Compile Include="AdNetwork\YandexAd.cs" />
+    <Compile Include="Analytics\CustomAnalytics.cs" />
+    <Compile Include="Analytics\GoogleAnalytics.cs" />
     <Compile Include="Analytics\LiveInternet.cs" />
+    <Compile Include="Analytics\MailRu.cs" />
+    <Compile Include="Analytics\Mediascope.cs" />
+    <Compile Include="Analytics\RamblerTop100.cs" />
     <Compile Include="Analytics\YandexMetrika.cs" />
+    <Compile Include="Constants\AdNetworkTypes.cs" />
+    <Compile Include="ITurboFeedElement.cs" />
+    <Compile Include="TurboChannel.cs" />
     <Compile Include="Constants\AnalyticsTypes.cs" />
     <Compile Include="Constants\Namespaces.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Analytics\TurboAnalytics.cs" />
     <Compile Include="TurboFeed.cs" />
     <Compile Include="TurboFeedItem.cs" />
+    <Compile Include="Related\YandexRelated.cs" />
+    <Compile Include="Related\YandexRelatedLink.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

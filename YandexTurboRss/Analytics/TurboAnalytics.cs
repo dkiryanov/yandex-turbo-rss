@@ -1,9 +1,10 @@
 ﻿using System.Xml.Linq;
 using YandexTurboRss.Constants;
+using YandexTurboRss.Feed;
 
 namespace YandexTurboRss.Analytics
 {
-    public abstract class TurboAnalytics
+    public abstract class TurboAnalytics : ITurboFeedElement
     {
         public abstract string Type { get; }
 
@@ -13,11 +14,12 @@ namespace YandexTurboRss.Analytics
 
         protected string Params { get; set; }
 
+        protected virtual XNamespace TurboYandexNamespace => Namespaces.TurboYandex;
+
         public virtual XElement ToXElement()
         {
-            XNamespace turboYandexNamespace = Namespaces.TurboYandex;
-
-            return new XElement(turboYandexNamespace + "analytics",
+            return new XElement(
+                TurboYandexNamespace + "analytics",
                 new XAttribute("type", Type),
                 new XAttribute("id", Id));
         }
