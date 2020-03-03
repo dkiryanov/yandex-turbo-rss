@@ -1,4 +1,5 @@
-﻿using System.Xml.Linq;
+﻿using System;
+using System.Xml.Linq;
 using YandexTurboRss.Constants;
 
 namespace YandexTurboRss.AdNetwork
@@ -9,7 +10,7 @@ namespace YandexTurboRss.AdNetwork
 
         public AdFox(string turboAdId, string adScript)
         {
-            TurboAdId = turboAdId;
+            TurboAdId = turboAdId ?? throw new ArgumentNullException(nameof(turboAdId), "Parameter cannot be null");
             _adScript = adScript;
         }
 

@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -51,16 +52,19 @@
     <Compile Include="Analytics\RamblerTop100.cs" />
     <Compile Include="Analytics\YandexMetrika.cs" />
     <Compile Include="Constants\AdNetworkTypes.cs" />
-    <Compile Include="ITurboFeedElement.cs" />
-    <Compile Include="TurboChannel.cs" />
+    <Compile Include="Feed\ITurboFeedElement.cs" />
+    <Compile Include="Feed\TurboChannel.cs" />
     <Compile Include="Constants\AnalyticsTypes.cs" />
     <Compile Include="Constants\Namespaces.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Analytics\TurboAnalytics.cs" />
-    <Compile Include="TurboFeed.cs" />
-    <Compile Include="TurboFeedItem.cs" />
+    <Compile Include="Feed\TurboFeed.cs" />
+    <Compile Include="Feed\TurboFeedItem.cs" />
     <Compile Include="Related\YandexRelated.cs" />
     <Compile Include="Related\YandexRelatedLink.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Settings.StyleCop" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,5 @@
-﻿using System.Xml.Linq;
+﻿using System;
+using System.Xml.Linq;
 using YandexTurboRss.Constants;
 
 namespace YandexTurboRss.AdNetwork
@@ -9,8 +10,8 @@ namespace YandexTurboRss.AdNetwork
 
         public YandexAd(string id, string turboAdId)
         {
-            _id = id;
-            TurboAdId = turboAdId;
+            _id = id ?? throw new ArgumentNullException(nameof(id), "Parameter cannot be null");
+            TurboAdId = turboAdId ?? throw new ArgumentNullException(nameof(turboAdId), "Parameter cannot be null");
         }
 
         public override string Type => AdNetworkTypes.Yandex;

@@ -5,7 +5,7 @@ namespace YandexTurboRss.Analytics
 {
     public class YandexMetrika : TurboAnalytics
     {
-        public YandexMetrika(string id, string paramsValue)
+        public YandexMetrika(string id, string paramsValue = "")
         {
             Id = id;
             Params = paramsValue;
@@ -16,7 +16,11 @@ namespace YandexTurboRss.Analytics
         public override XElement ToXElement()
         {
             XElement xelement = base.ToXElement();
-            xelement.SetAttributeValue("params", Params);
+
+            if (!string.IsNullOrEmpty(Params))
+            {
+                xelement.SetAttributeValue("params", Params);
+            }
 
             return xelement;
         }

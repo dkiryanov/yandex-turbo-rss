@@ -1,4 +1,5 @@
-﻿using System.Xml.Linq;
+﻿using System;
+using System.Xml.Linq;
 using YandexTurboRss.Constants;
 
 namespace YandexTurboRss.Analytics
@@ -7,7 +8,7 @@ namespace YandexTurboRss.Analytics
     {
         public CustomAnalytics(string url)
         {
-            Url = url;
+            Url = url ?? throw new ArgumentNullException(nameof(url), "Parameter cannot be null");
         }
 
         public override string Type => AnalyticsTypes.Custom;

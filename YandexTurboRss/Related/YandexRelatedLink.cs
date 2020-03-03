@@ -13,7 +13,14 @@ namespace YandexTurboRss.Related
 
         public XElement ToXElement()
         {
-            return new XElement("link", new XAttribute("url", Url), new XAttribute("img", Img), Text);
+            XElement linkElement = new XElement("link", new XAttribute("url", Url), Text);
+
+            if (!string.IsNullOrEmpty(Img))
+            {
+                linkElement.SetAttributeValue("img", Img);
+            }
+
+            return linkElement;
         }
     }
 }
