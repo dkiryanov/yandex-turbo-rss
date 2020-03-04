@@ -157,5 +157,135 @@ namespace Tests.Unit.Feed
             root.Element(ChannelElementName).HasElements.Should().BeTrue();
             root.Element(ChannelElementName).Elements("item").Count().Should().Equals(2);
         }
+
+        [Test]
+        public void AddItem_ItemIsNotNull_AddsFeedItem()
+        {
+            // Arrange
+            DateTime pubDate = DateTime.Now;
+            TurboFeedItem item = new TurboFeedItem()
+            {
+                Link = "https://sample.ru",
+                Author = "Author 1",
+                Content = "Content 1",
+                PubDate = pubDate,
+                Source = "https://source2.ru",
+                Topic = "Item 1"
+            };
+
+            // Act
+            _turboFeed.AddItem(item);
+            XDocument result = _turboFeed.GetFeed();
+
+            // Assert
+            result.Should().NotBeNull();
+
+            XElement root = result.Root;
+            root.Should().NotBeNull();
+
+            root.Element(ChannelElementName).Elements("item").Count().Should().Equals(1);
+
+            XElement addedItem = root.Element(ChannelElementName).Element("item");
+
+            addedItem.Should().NotBeNull();
+            addedItem.Should().HaveAttribute("turbo", "true");
+            addedItem.Should().HaveElement("link").Which.Value.Should().BeEquivalentTo("https://sample.ru");
+            addedItem.Should().HaveElement(_turboYandexNamespace + "source").Which.Value.Should().BeEquivalentTo("https://source2.ru");
+            addedItem.Should().HaveElement(_turboYandexNamespace + "topic").Which.Value.Should().BeEquivalentTo("Item 1");
+            addedItem.Should().HaveElement("pubDate").Which.Value.Should().BeEquivalentTo(pubDate.ToString("R"));
+            addedItem.Should().HaveElement("author").Which.Value.Should().BeEquivalentTo("Author 1");
+            addedItem.Should().HaveElement(_turboYandexNamespace + "content").Which.Value.Should().BeEquivalentTo("Content 1");
+        }
+
+        [Test]
+        public void AddItem_ItemIsNull_ThrowsArgumentNullException()
+        {
+            // Arrange
+            TurboFeedItem item = null;
+            
+            // Assert
+            Assert.Throws<ArgumentNullException>(() => _turboFeed.AddItem(item));
+        }
+
+        [Test]
+        public void AddItems_HasItemThatIsNull_ThrowsArgumentNullException()
+        {
+            // Arrange
+            List<TurboFeedItem> items = new List<TurboFeedItem>()
+            {
+                null
+            };
+
+            // Assert
+            Assert.Throws<ArgumentNullException>(() => _turboFeed.AddItems(items));
+        }
+
+        [Test]
+        public void AddItems_ItemsCollectionToAddIsNull_ThrowsArgumentNullException()
+        {
+            // Arrange
+            List<TurboFeedItem> items = null;
+
+            // Assert
+            Assert.Throws<ArgumentNullException>(() => _turboFeed.AddItems(items));
+        }
+
+        [Test]
+        public void AddItems_HasItemsToAdd_AddsItemsToFeed()
+        {
+            // Arrange
+            List<TurboFeedItem> itemsToAdd = new List<TurboFeedItem>()
+            {
+                new TurboFeedItem()
+                {
+                    Link = "https://sample.ru",
+                    Author = "Author 1",
+                    Content = "Content 1",
+                    PubDate = DateTime.Now,
+                    Source = "https://source2.ru",
+                    Topic = "Item 1",
+                    Turbo = "true"
+                },
+                new TurboFeedItem()
+                {
+                    Link = "https://sample2.ru",
+                    Author = "Author 2",
+                    Content = "Content 2",
+                    PubDate = DateTime.Now,
+                    Source = "https://source2.ru",
+                    Topic = "Item 2",
+                    Turbo = "false"
+                }
+            };
+
+            // Act
+            _turboFeed.AddItems(itemsToAdd);
+            XDocument result = _turboFeed.GetFeed();
+
+            // Assert
+            result.Should().NotBeNull();
+             
+            XElement root = result.Root;
+            root.Should().NotBeNull();
+            root.Element(ChannelElementName).Elements("item").Count().Should().Equals(2);
+
+            IEnumerable<XElement> addedItems = root.Element(ChannelElementName).Elements("item");
+
+            addedItems.Should().NotBeNull();
+
+            for (int i = 0; i < itemsToAdd.Count; i ++)
+            {
+                TurboFeedItem itemToAdd = itemsToAdd[i];
+                XElement addedItem = addedItems.ElementAt(i);
+
+                addedItem.Should().HaveAttribute("turbo", itemToAdd.Turbo);
+                addedItem.Should().HaveElement("link").Which.Value.Should().BeEquivalentTo(itemToAdd.Link);
+                addedItem.Should().HaveElement(_turboYandexNamespace + "source").Which.Value.Should().BeEquivalentTo(itemToAdd.Source);
+                addedItem.Should().HaveElement(_turboYandexNamespace + "topic").Which.Value.Should().BeEquivalentTo(itemToAdd.Topic);
+                addedItem.Should().HaveElement("pubDate").Which.Value.Should().BeEquivalentTo(itemToAdd.PubDate.ToString("R"));
+                addedItem.Should().HaveElement("author").Which.Value.Should().BeEquivalentTo(itemToAdd.Author);
+                addedItem.Should().HaveElement(_turboYandexNamespace + "content").Which.Value.Should().BeEquivalentTo(itemToAdd.Content);
+            }
+        }
     }
 }

@@ -40,6 +40,11 @@ namespace YandexTurboRss.Feed
 
         public void AddItems(IEnumerable<TurboFeedItem> feed)
         {
+            if (feed == null)
+            {
+                throw new ArgumentNullException(nameof(feed), "Feed item cannot be null.");
+            }
+
             foreach (TurboFeedItem item in feed)
             {
                 AddItem(item);
