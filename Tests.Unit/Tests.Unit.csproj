@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="AdNetwork\AdFoxTests.cs" />
     <Compile Include="AdNetwork\YandexAdTests.cs" />
+    <Compile Include="Feed\TurboFeedItemTests.cs" />
     <Compile Include="Feed\TurboFeedTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
