@@ -55,6 +55,14 @@
   <ItemGroup>
     <Compile Include="AdNetwork\AdFoxTests.cs" />
     <Compile Include="AdNetwork\YandexAdTests.cs" />
+    <Compile Include="Analytics\CustomAnalyticsTests.cs" />
+    <Compile Include="Analytics\GoogleAnalyticsTests.cs" />
+    <Compile Include="Analytics\LiveInternetTests.cs" />
+    <Compile Include="Analytics\MailRuTests.cs" />
+    <Compile Include="Analytics\MediascopeTests.cs" />
+    <Compile Include="Analytics\RamblerTop100Tests.cs" />
+    <Compile Include="Analytics\YandexMetrikaTests.cs" />
+    <Compile Include="Feed\TurboChannelTests.cs" />
     <Compile Include="Feed\TurboFeedItemTests.cs" />
     <Compile Include="Feed\TurboFeedTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -69,9 +77,7 @@
       <Name>YandexTurboRss</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Analytics\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

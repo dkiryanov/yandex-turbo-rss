@@ -5,7 +5,7 @@ namespace YandexTurboRss.Analytics
 {
     public class LiveInternet : TurboAnalytics
     {
-        public LiveInternet(string paramsValue = null)
+        public LiveInternet(string paramsValue = "")
         {
             Params = paramsValue;
         }

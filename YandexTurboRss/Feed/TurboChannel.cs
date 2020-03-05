@@ -4,7 +4,6 @@ using System.Linq;
 using System.Xml.Linq;
 using YandexTurboRss.AdNetwork;
 using YandexTurboRss.Analytics;
-using YandexTurboRss.Related;
 
 namespace YandexTurboRss.Feed
 {
@@ -25,8 +24,6 @@ namespace YandexTurboRss.Feed
 
         public string Language { get; set; }
 
-        public YandexRelated Related { get; set; }
-
         public IEnumerable<TurboAnalytics> Analytics { get; set; }
 
         public IEnumerable<TurboAdNetwork> AdNetworks { get; set; }
@@ -37,18 +34,16 @@ namespace YandexTurboRss.Feed
         {
             IEnumerable<XElement> analyticsCollection = Analytics?.Select(analytics => analytics.ToXElement()) ?? new List<XElement>();
             IEnumerable<XElement> adNetworkCollection = AdNetworks?.Select(ads => ads.ToXElement()) ?? new List<XElement>();
-            XElement related = Related != null ? Related.ToXElement() : new YandexRelated().ToXElement();
             IEnumerable<XElement> items = Items?.Select(item => item.ToXElement()) ?? new List<XElement>();
 
             return new XElement(
                 "channel",
                 new XElement("title", Title),
-                new XElement("link", Link.ToString()),
+                new XElement("link", Link?.ToString()),
                 new XElement("description", Description),
                 new XElement("language", Language),
                 analyticsCollection,
                 adNetworkCollection,
-                related,
                 items);
         }
     }

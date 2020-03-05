@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Xml.Linq;
 using YandexTurboRss.Constants;
+using YandexTurboRss.Related;
 
 namespace YandexTurboRss.Feed
 {
@@ -27,6 +28,8 @@ namespace YandexTurboRss.Feed
 
         public string Turbo { get; set; }
 
+        public YandexRelated Related { get; set; }
+
         public XElement ToXElement()
         {
             return new XElement(
@@ -37,6 +40,7 @@ namespace YandexTurboRss.Feed
                 new XElement(_turboYandexNamespace + "topic", Topic),
                 new XElement("pubDate", PubDate.ToString("R")),
                 new XElement("author", Author),
+                Related?.ToXElement(),
                 new XElement(_turboYandexNamespace + "content", new XCData(Content)));
         }
     }

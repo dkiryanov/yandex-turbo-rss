@@ -8,7 +8,6 @@ using YandexTurboRss.AdNetwork;
 using YandexTurboRss.Analytics;
 using YandexTurboRss.Constants;
 using YandexTurboRss.Feed;
-using YandexTurboRss.Related;
 
 namespace Tests.Unit.Feed
 {
@@ -52,23 +51,6 @@ namespace Tests.Unit.Feed
                 {
                     new YandexAd("yandex-block-id", "yandex_ad_place"),
                     new AdFox("adfox-bock-id", AdFoxScript)
-                },
-                Related = new YandexRelated()
-                {
-                    IsInfinite = true,
-                    RelatedLinks = new List<YandexRelatedLink>()
-                    {
-                        new YandexRelatedLink()
-                        {
-                            Url = "http://www.example.com/other-page1.html",
-                            Text = "Page 1"
-                        },
-                        new YandexRelatedLink()
-                        {
-                            Url = "http://www.example.com/other-page2.html",
-                            Text = "Page 2"
-                        }
-                    }
                 }
             };
             _turboFeed = new TurboFeed(_channel);
