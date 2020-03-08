@@ -1,6 +1,6 @@
 ﻿namespace YandexTurboRss.Constants
 {
-    public static class Namespaces
+    public class Namespaces
     {
         public const string YandexNews = "http://news.yandex.ru";
 

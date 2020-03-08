@@ -42,8 +42,8 @@ namespace Tests.Unit.Analytics
         public void ToXElement_HasLiveInternetParams_ReturnsXElementWithParamsAttribute()
         {
             // Arrange
-            const string liveInternetParams = "LiveInternet params";
-            LiveInternet liveInternet = new LiveInternet(liveInternetParams);
+            const string LiveInternetParams = "LiveInternet params";
+            LiveInternet liveInternet = new LiveInternet(LiveInternetParams);
 
             // Act
             XElement result = liveInternet.ToXElement();
@@ -53,7 +53,7 @@ namespace Tests.Unit.Analytics
             result.Name.LocalName.Should().BeEquivalentTo("analytics");
             result.Name.Namespace.Should().BeEquivalentTo(TurboYandexNamespace);
             result.Should().HaveAttribute("type", AnalyticsTypes.LiveInternet)
-                .And.HaveAttribute("params", liveInternetParams);
+                .And.HaveAttribute("params", LiveInternetParams);
         }
     }
 }

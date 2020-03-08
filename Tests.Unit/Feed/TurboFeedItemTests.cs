@@ -7,7 +7,7 @@ using YandexTurboRss.Feed;
 
 namespace Tests.Unit.Feed
 {
-    [TestFixture()]
+    [TestFixture]
     public class TurboFeedItemTests
     {
         private readonly XNamespace _turboYandexNamespace = Namespaces.TurboYandex;

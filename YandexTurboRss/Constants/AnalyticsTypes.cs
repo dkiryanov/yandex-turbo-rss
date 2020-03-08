@@ -1,6 +1,6 @@
 ﻿namespace YandexTurboRss.Constants
 {
-    public static class AnalyticsTypes
+    public class AnalyticsTypes
     {
         public const string YandexMetrika = "Yandex";
 

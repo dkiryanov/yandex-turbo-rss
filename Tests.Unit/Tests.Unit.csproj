@@ -66,6 +66,8 @@
     <Compile Include="Feed\TurboFeedItemTests.cs" />
     <Compile Include="Feed\TurboFeedTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Related\YandexRelatedLinkTests.cs" />
+    <Compile Include="Related\YandexRelatedTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

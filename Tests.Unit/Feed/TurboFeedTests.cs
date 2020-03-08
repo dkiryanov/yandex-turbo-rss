@@ -255,7 +255,7 @@ namespace Tests.Unit.Feed
 
             addedItems.Should().NotBeNull();
 
-            for (int i = 0; i < itemsToAdd.Count; i ++)
+            for (int i = 0; i < itemsToAdd.Count; i++)
             {
                 TurboFeedItem itemToAdd = itemsToAdd[i];
                 XElement addedItem = addedItems.ElementAt(i);

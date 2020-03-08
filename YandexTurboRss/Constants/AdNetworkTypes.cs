@@ -1,6 +1,6 @@
 ﻿namespace YandexTurboRss.Constants
 {
-    public static class AdNetworkTypes
+    public class AdNetworkTypes
     {
         public const string Yandex = "Yandex";
 

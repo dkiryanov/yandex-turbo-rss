@@ -11,7 +11,6 @@ namespace Tests.Unit.Analytics
     {
         private XNamespace TurboYandexNamespace => Namespaces.TurboYandex;
 
-
         [Test]
         public void YandexMetrika_HasYandexMetrikaType()
         {
