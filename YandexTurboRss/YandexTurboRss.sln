@@ -7,11 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YandexTurboRss", "YandexTur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Unit", "..\Tests.Unit\Tests.Unit.csproj", "{0DB76EC7-4631-4273-BDAE-95D2A018B2F2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".circleci", ".circleci", "{7BBE5636-DAC3-4460-A16B-5F93C812CB29}"
-	ProjectSection(SolutionItems) = preProject
-		config.yml = config.yml
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
