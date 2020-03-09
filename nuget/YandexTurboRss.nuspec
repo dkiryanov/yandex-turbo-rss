@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>YandexTurboRss</id>
+    <version>1.0.1</version>
+    <title>YandexTurboRss</title>
+    <authors>Denis Kiryanov</authors>
+    <owners>Denis Kiryanov</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/dkiryanov/yandex-turbo-rss</projectUrl>
+    <description>RSS generator for the Yandex turbo pages.</description>
+    <releaseNotes>This package contains a first version of the RSS generator for the Yandex turbo pages.</releaseNotes>
+    <tags>RSS Yandex Turbo</tags>
+  </metadata>
+</package>
