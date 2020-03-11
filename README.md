@@ -24,7 +24,7 @@ TurboChannel channel = new TurboChannel()
 {
     Description = "Short description of the feed",
     Title = "Feed title",
-    Link = new Uri("http://www.example.com/"),
+    Link = new Uri("http://www.example.com/")
 };
 ```
 All right! We've just set up the source information! Now let's create a feed and initialize it with the channel created previously:
@@ -92,7 +92,7 @@ TurboChannel channel = new TurboChannel()
         new YandexMetrika("12345"),
         new GoogleAnalytics("ga-12345"),
         new LiveInternet(),
-        new RamblerTop100("345678"),
+        new RamblerTop100("345678")
     }
 };
 TurboFeed feed = new TurboFeed(channel);
@@ -114,3 +114,39 @@ TurboChannel channel = new TurboChannel()
 ```
 
 Please note that Yandex turbo pages only allows you to display Yandex Direct or AdFox ads.
+
+## Adding related pages
+
+You can post links to other resources or customize the display of the infinite scroll.
+These links will be placed at the bottom of the Turbo page. To add links anywhere on the page, use ```YandexRelated``` class:
+
+```c#
+TurboFeed feed = new TurboFeed(new TurboChannel()
+{
+    Description = "Short description",
+    Title = "Feed title",
+    Link = new Uri("https://sourcewebsite.com"),
+});
+            
+TurboFeedItem item = new TurboFeedItem()
+ {
+    Related = new YandexRelated
+     {
+         RelatedLinks = new List<YandexRelatedLink>()
+         {
+             new YandexRelatedLink()
+             {
+                 Url = "https://link.com/link1",
+                 Text = "Link 1 text"
+             },
+             new YandexRelatedLink()
+             {
+                 Url = "https://link.com/link2",
+                 Text = "Link 2 text"
+             }
+         }
+     }
+};
+
+feed.AddItem(item);
+```
