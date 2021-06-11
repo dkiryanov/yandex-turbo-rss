@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26430.15
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31313.79
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YandexTurboRss", "YandexTurboRss.csproj", "{D0E86FCB-858C-4AEB-B7D6-09C61400E338}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YandexTurboRss", "YandexTurboRss.csproj", "{D0E86FCB-858C-4AEB-B7D6-09C61400E338}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Unit", "..\Tests.Unit\Tests.Unit.csproj", "{0DB76EC7-4631-4273-BDAE-95D2A018B2F2}"
 EndProject
@@ -24,5 +24,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5C195297-4E16-41A8-B353-D3F9CCCE2247}
 	EndGlobalSection
 EndGlobal
